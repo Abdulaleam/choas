@@ -3,10 +3,7 @@ package rainy.choas;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
-import rainy.choas.events.DropAll;
-import rainy.choas.events.InventoryShuffle;
-import rainy.choas.events.MonsterWave;
-import rainy.choas.events.RandomTeleport;
+import rainy.choas.events.*;
 
 import java.util.List;
 import java.util.Random;
@@ -26,7 +23,10 @@ public class ChoasEventRegistry {
             new RandomTeleport(),
             new InventoryShuffle(),
             new DropAll(),
-            new MonsterWave()
+            new MonsterWave(),
+            new Swap(),
+            new Armor(),
+            new Thunder()
 
 
     );
