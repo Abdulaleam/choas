@@ -72,11 +72,11 @@ public class ChoasCommand {
         boolean left = ChoasTickManager.leavePlayer(player);
         if (!left) {
             ctx.getSource().sendFeedback(() ->
-                    Text.literal("You're not even in the game dude, wake up").formatted(Formatting.GRAY, Formatting.BOLD), true);
+                    Text.literal(" §5You're not even in the game dude, wake up").formatted(Formatting.GRAY, Formatting.BOLD), true);
             return 0;
         }
         ctx.getSource().sendFeedback(() ->
-                Text.literal("Scared lil baby? , Why you leaving huh").formatted(Formatting.YELLOW, Formatting.BOLD), true);
+                Text.literal(" §4Scared lil baby? , Why you leaving huh").formatted(Formatting.YELLOW, Formatting.BOLD), true);
         return 1;
     }
 }
