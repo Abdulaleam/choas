@@ -3,6 +3,7 @@ package rainy.choas;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
+import rainy.choas.events.DropAll;
 import rainy.choas.events.InventoryShuffle;
 import rainy.choas.events.RandomTeleport;
 
@@ -22,7 +23,8 @@ public class ChoasEventRegistry {
 
     private static final List<ChoasEvent> EVENTS = List.of(
             new RandomTeleport(),
-            new InventoryShuffle()
+            new InventoryShuffle(),
+            new DropAll()
 
             // add the events i will make here later on
 
