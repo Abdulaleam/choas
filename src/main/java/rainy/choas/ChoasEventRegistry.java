@@ -5,6 +5,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import rainy.choas.events.DropAll;
 import rainy.choas.events.InventoryShuffle;
+import rainy.choas.events.MonsterWave;
 import rainy.choas.events.RandomTeleport;
 
 import java.util.List;
@@ -24,9 +25,9 @@ public class ChoasEventRegistry {
     private static final List<ChoasEvent> EVENTS = List.of(
             new RandomTeleport(),
             new InventoryShuffle(),
-            new DropAll()
+            new DropAll(),
+            new MonsterWave()
 
-            // add the events i will make here later on
 
     );
 
