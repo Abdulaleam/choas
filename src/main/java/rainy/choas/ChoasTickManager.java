@@ -13,43 +13,64 @@ public class ChoasTickManager {
     private static final Set<UUID> joinedPlayers = new HashSet<>();
     private static final Map<UUID, Integer> tickCounters = new HashMap<>();
 
-    public static void startGlobal(){
+    public static boolean isRunning() {
+        return running;
+    }
+
+    public static boolean startGlobal() {
+        if (running) {
+            return false;
+        }
         running = true;
+        return true;
     }
-    public static void stopGlobal() {
+    public static boolean stopGlobal(){
+        if(!running) {
+            return false;
+        }
         running = false;
+        return true;
     }
-    public static void joinPlayer(ServerPlayerEntity player) {
+    public static boolean joinPlayer(ServerPlayerEntity player) {
+        if (joinedPlayers.contains(player.getUuid())) {
+            return false;
+        }
         joinedPlayers.add(player.getUuid());
         tickCounters.put(player.getUuid(), INTERVAL_TICKS);
+        return  true;
     }
-    public static void leavePlayer(ServerPlayerEntity player) {
+    public static boolean leavePlayer(ServerPlayerEntity player) {
+        if (!joinedPlayers.contains(player.getUuid())) {
+            return false;
+        }
         joinedPlayers.remove(player.getUuid());
         tickCounters.remove(player.getUuid());
+        return true;
     }
-    public static void onServerTick(MinecraftServer server) {
+    public static boolean isJoined(ServerPlayerEntity player) {
+        return joinedPlayers.contains(player.getUuid());
+    }
+     public static void onServerTick(MinecraftServer server) {
         if (!running || joinedPlayers.isEmpty())
-            return;
+            return;;
 
-        Iterator<UUID> iterator = joinedPlayers.iterator();
-        while (iterator.hasNext()) {
-            UUID uuid = iterator.next();
-            ServerPlayerEntity player = server.getPlayerManager().getPlayer(uuid);
+            Iterator<UUID> iterator = joinedPlayers.iterator();
+            while (iterator.hasNext()) {
+                UUID uuid = iterator.next();
+                ServerPlayerEntity player = server.getPlayerManager().getPlayer(uuid);
 
-            if (player ==null) {
-                iterator.remove();
-                tickCounters.remove(uuid);
-                continue;
+                if (player == null) {
+                    iterator.remove();
+                    tickCounters.remove(uuid);
+                    continue;
+                }
+                int ticksLeft = tickCounters.getOrDefault(uuid, INTERVAL_TICKS) -1;
+                if (ticksLeft <= 0) {
+                    ChoasEventRegistry.BoomRandomEvents(player);
+                    tickCounters.put(uuid, INTERVAL_TICKS);
+                } else {
+                    tickCounters.put(uuid, ticksLeft);
+                }
             }
-            int ticksLeft = tickCounters.getOrDefault(uuid, INTERVAL_TICKS) -1;
-            if (ticksLeft <= 0) {
-                ChoasEventRegistry.BoomRandomEvents(player);
-                tickCounters.put(uuid, INTERVAL_TICKS);
-            } else {
-                tickCounters.put(uuid, ticksLeft);
-
-            }
-        }
-    }
-
+     }
 }

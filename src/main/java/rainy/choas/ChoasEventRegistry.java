@@ -3,6 +3,7 @@ package rainy.choas;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
+import rainy.choas.events.RandomTeleport;
 
 import java.util.List;
 import java.util.Random;
@@ -19,6 +20,7 @@ public class ChoasEventRegistry {
 
 
     private static final List<ChoasEvent> EVENTS = List.of(
+            new RandomTeleport()
 
             // add the events i will make here later on
 
