@@ -5,7 +5,6 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-
 public class ChoasCommand {
     public static int start(CommandContext<ServerCommandSource> ctx) {
         ServerPlayerEntity player = ctx.getSource().getPlayer();
@@ -79,4 +78,6 @@ public class ChoasCommand {
                 Text.literal(" §4Scared lil baby? , Why you leaving huh").formatted(Formatting.YELLOW, Formatting.BOLD), true);
         return 1;
     }
+
+
 }

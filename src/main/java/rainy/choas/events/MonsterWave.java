@@ -14,14 +14,16 @@ public class MonsterWave implements ChoasEventRegistry.ChoasEvent {
     @Override
     public String execute(ServerPlayerEntity player) {
         if (player.getWorld() instanceof ServerWorld serverWorld) {
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 10; i++) {
                 ZombieEntity zombie = EntityType.ZOMBIE.create(serverWorld);
 
                 if (zombie != null) {
-                    double x = player.getX() + RANDOM.nextInt(6) - 3;
-                    double z = player.getZ() + RANDOM.nextInt(6) - 3;
+                    double x = player.getX() + RANDOM.nextInt(10) - 5;
+                    double z = player.getZ() + RANDOM.nextInt(10) - 5;
 
                     zombie.refreshPositionAndAngles(x, player.getY(), z, 0f, 0f);
+
+                    serverWorld.spawnEntity(zombie);
                 }
             }
         }

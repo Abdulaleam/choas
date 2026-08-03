@@ -26,7 +26,13 @@ public class ChoasEventRegistry {
             new MonsterWave(),
             new Swap(),
             new Armor(),
-            new Thunder()
+            new Thunder(),
+            new TnT(),
+            new ComeHere(),
+            new MyHorse(),
+            new MoneyRainBro(),
+            new GibMeYourInV(),
+            new TogtherForEver()
 
 
     );
