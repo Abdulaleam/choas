@@ -19,6 +19,8 @@ public class Choas implements ModInitializer {
 				dispatcher.register(CommandManager.literal("choas")
 						.then(CommandManager.literal("start").executes(ChoasCommand::start))
 						.then(CommandManager.literal("stop").executes(ChoasCommand::stop))
+						.then(CommandManager.literal("join").executes(ChoasCommand::join))
+						.then(CommandManager.literal("leave").executes(ChoasCommand::leave))
 				)));
 
 		ServerTickEvents.END_SERVER_TICK.register(ChoasTickManager::onServerTick);
