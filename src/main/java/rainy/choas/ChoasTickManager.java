@@ -7,7 +7,7 @@ import org.apache.logging.log4j.core.jmx.Server;
 import java.util.*;
 
 public class ChoasTickManager {
-    private static final int INTERVAL_TICKS = 20 * 30; // 30 seconds should be fine ehhhh ima leave it
+    private static final int INTERVAL_TICKS = 20 * 5; // 30 seconds should be fine ehhhh ima leave it
 
     private static boolean running = false;
     private static final Set<UUID> joinedPlayers = new HashSet<>();
