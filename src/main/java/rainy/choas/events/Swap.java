@@ -41,7 +41,7 @@ public class Swap implements ChoasEventRegistry.ChoasEvent {
         return player.getName().getString() + " and " + other.getName().getString() + " §l§6 Swapped Places";
     }
     public static void BoomSwapEvent(ServerPlayerEntity player) {
-        String message = new Armor().execute(player);
+        String message = new Swap().execute(player);
 
 
          MinecraftServer server = player.getServer();
