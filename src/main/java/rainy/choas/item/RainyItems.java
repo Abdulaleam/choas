@@ -12,6 +12,7 @@ public class RainyItems {
     public static final Item SWAP = registerItem("swap", new SwapItem(new Item.Settings().maxCount(1)));
     public static final Item GIB = registerItem("gib", new GibInvItem(new Item.Settings().maxCount(1)));
     public static final Item COME = registerItem("come", new ComeHereItem(new Item.Settings().maxCount(1)));
+    public static final Item Drop = registerItem("drop", new DropAllItem(new Item.Settings().maxCount(1)));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(Choas.MOD_ID, name), item);
