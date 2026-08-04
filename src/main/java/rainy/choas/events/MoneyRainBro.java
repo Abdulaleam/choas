@@ -4,8 +4,10 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
 import rainy.choas.ChoasEventRegistry;
 
 import java.util.Random;
@@ -33,4 +35,16 @@ public class MoneyRainBro implements ChoasEventRegistry.ChoasEvent {
 
         }
               return " §8§l IT'S RAINING MONEY HOLYYYY ON " + player.getName().getString() + "§8§l!!!";
-    }}
+    }
+    public static void BoomMoney(ServerPlayerEntity player) {
+        String message = new MoneyRainBro().execute(player);
+        MinecraftServer server = player.getServer();
+        if (server != null) {
+            server.getPlayerManager().broadcast(Text.literal("§6[Chaos] §e" + message), false);
+        }
+
+        player.sendMessage(Text.literal("§d" + message), true);
+
+    }
+
+}

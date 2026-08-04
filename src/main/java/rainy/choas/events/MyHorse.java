@@ -2,6 +2,7 @@ package rainy.choas.events;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import rainy.choas.ChoasEventRegistry;
 
 import java.util.List;
@@ -31,6 +32,17 @@ public class MyHorse implements ChoasEventRegistry.ChoasEvent {
         player.startRiding(mount, true);
 
         return player.getName().getString() + " §6§lis now Mounting " + mount.getName().getString() + " §6§lLike a Horse ";
+
+    }
+    public  static void BoomMyHorse(ServerPlayerEntity player) {
+        String message = new MyHorse().execute(player);
+
+        MinecraftServer server = player.getServer();
+        if (server != null) {
+            server.getPlayerManager().broadcast(Text.literal("§6[Chaos] §e" + message), false);
+        }
+
+        player.sendMessage(Text.literal("§d" + message), true);
 
     }
 

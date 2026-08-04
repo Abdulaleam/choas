@@ -2,6 +2,7 @@ package rainy.choas.events;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.Vec3d;
 import rainy.choas.ChoasEventRegistry;
 
@@ -33,5 +34,14 @@ public class ComeHere implements ChoasEventRegistry.ChoasEvent {
 
         return other.getName().getString() + " §6§l Bro Got Yanked Next to " + player.getName().getString() + " §6§l!!! Lmaoo";
 
+    }
+    public static void BoomComeHere(ServerPlayerEntity player) {
+        String message = new DropAll().execute(player);
+        MinecraftServer server = player.getServer();
+        if (server != null) {
+            server.getPlayerManager().broadcast(Text.literal("§6[Chaos] §e" + message), false);
+        }
+
+        player.sendMessage(Text.literal("§d" + message), true);
     }
 }

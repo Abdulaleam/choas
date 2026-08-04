@@ -4,6 +4,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import rainy.choas.ChoasEventRegistry;
 
 import java.util.ArrayList;
@@ -45,5 +46,14 @@ public class GibMeYourInV implements ChoasEventRegistry.ChoasEvent {
 
          return player.getName().getString() + " §0§l and" + other.getName().getString() + " §0§lSwapped Inventorys!!";
 
+    }
+    public static void BoomGibme(ServerPlayerEntity player) {
+        String message = new GibMeYourInV().execute(player);
+        MinecraftServer server = player.getServer();
+        if (server != null) {
+            server.getPlayerManager().broadcast(Text.literal("§6[Chaos] §e" + message), false);
+        }
+
+        player.sendMessage(Text.literal("§d" + message), true);
     }
 }

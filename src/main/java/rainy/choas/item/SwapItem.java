@@ -6,6 +6,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
+import rainy.choas.events.Swap;
 
 public class SwapItem extends Item {
     public SwapItem(Settings settings) {
@@ -16,8 +17,11 @@ public class SwapItem extends Item {
 
     public TypedActionResult<net.minecraft.item.ItemStack> use(World world, PlayerEntity player, Hand hand) {
         if (!world.isClient && player instanceof ServerPlayerEntity serverPlayer) {
+            String message = new Swap().execute(serverPlayer);
+            Swap.BoomSwapEvent(serverPlayer);
 
         }
+        return TypedActionResult.success(player.getStackInHand(hand), world.isClient());
     }
 
 

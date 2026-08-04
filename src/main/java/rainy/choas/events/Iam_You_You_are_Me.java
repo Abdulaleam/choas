@@ -2,6 +2,7 @@ package rainy.choas.events;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import rainy.choas.ChoasEventRegistry;
 
 import java.util.List;
@@ -48,6 +49,16 @@ public class Iam_You_You_are_Me implements ChoasEventRegistry.ChoasEvent {
 
         return player.getName().getString() + " §8§lIs Now" + other.getName().getString();
 
+    }
+    public static void BoomYouMe(ServerPlayerEntity player) {
+        String message = new Iam_You_You_are_Me().execute(player);
+
+        MinecraftServer server = player.getServer();
+        if (server != null) {
+            server.getPlayerManager().broadcast(Text.literal("§6[Chaos] §e" + message), false);
+        }
+
+        player.sendMessage(Text.literal("§d" + message), true);
     }
 
 }
