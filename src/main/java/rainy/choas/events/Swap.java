@@ -3,6 +3,7 @@ package rainy.choas.events;
 import com.ibm.icu.impl.coll.UVector32;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import rainy.choas.ChoasEventRegistry;
 
 import java.util.List;
@@ -39,4 +40,17 @@ public class Swap implements ChoasEventRegistry.ChoasEvent {
 
         return player.getName().getString() + " and " + other.getName().getString() + " §l§6 Swapped Places";
     }
+    public static void BoomSwapEvent(ServerPlayerEntity player) {
+        String message = new Armor().execute(player);
+
+
+         MinecraftServer server = player.getServer();
+
+         if (server != null) {
+             server.getPlayerManager().broadcast(Text.literal("§6[Chaos] §e" + message), false);
+         }
+
+        player.sendMessage(Text.literal("§d" + message), true);
+    }
+
 }

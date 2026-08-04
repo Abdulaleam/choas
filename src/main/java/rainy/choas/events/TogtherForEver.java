@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.loader.api.metadata.version.VersionPredicate;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.Vec3d;
 import org.apache.logging.log4j.core.jmx.Server;
 import rainy.choas.ChoasEventRegistry;
@@ -89,4 +90,16 @@ public class TogtherForEver implements ChoasEventRegistry.ChoasEvent{
              }
         }
     }
-}
+    public static void BoomTogtherEvent(ServerPlayerEntity player) {
+        String message = new TogtherForEver().execute(player);
+
+        MinecraftServer server = player.getServer();
+
+        if (server != null) {
+            server.getPlayerManager().broadcast(Text.literal("§6[Chaos] §e" + message), false);
+        }
+
+        player.sendMessage(Text.literal("§d" + message), true);
+        }
+    }
+

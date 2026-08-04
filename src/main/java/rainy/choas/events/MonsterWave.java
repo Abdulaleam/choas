@@ -14,7 +14,7 @@ public class MonsterWave implements ChoasEventRegistry.ChoasEvent {
     @Override
     public String execute(ServerPlayerEntity player) {
         if (player.getWorld() instanceof ServerWorld serverWorld) {
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 14; i++) {
                 ZombieEntity zombie = EntityType.ZOMBIE.create(serverWorld);
 
                 if (zombie != null) {

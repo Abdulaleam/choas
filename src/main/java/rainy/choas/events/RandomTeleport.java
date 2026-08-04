@@ -1,6 +1,8 @@
 package rainy.choas.events;
 
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import net.minecraft.world.World;
 import rainy.choas.ChoasEventRegistry;
 
@@ -22,4 +24,16 @@ public class RandomTeleport implements ChoasEventRegistry.ChoasEvent {
 
         return player.getName().getString() + " §7§lBro Blinked and Found Himself Lost , Go Get Milk!";
     }
-}
+    public static void BoomTeleportEvent(ServerPlayerEntity player) {
+        String message = new RandomTeleport().execute(player);
+
+        MinecraftServer server = player.getServer();
+
+        if (server !=null) {
+            server.getPlayerManager().broadcast(Text.literal("§6[Chaos] §e" + message), false);
+        }
+
+        player.sendMessage(Text.literal("§d" + message), true);
+        }
+    }
+

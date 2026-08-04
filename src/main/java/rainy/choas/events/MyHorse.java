@@ -33,4 +33,5 @@ public class MyHorse implements ChoasEventRegistry.ChoasEvent {
         return player.getName().getString() + " §6§lis now Mounting " + mount.getName().getString() + " §6§lLike a Horse ";
 
     }
+
 }

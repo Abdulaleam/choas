@@ -4,7 +4,9 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import rainy.choas.ChoasEventRegistry;
 
 import java.util.Random;
@@ -22,5 +24,15 @@ public class Armor implements ChoasEventRegistry.ChoasEvent {
         Item helmet = HELMETS[RANDOM.nextInt(HELMETS.length)];
         player.equipStack(EquipmentSlot.HEAD, new ItemStack(helmet));
         return player.getName().getString() + " §6§lummm what the f are you wearing up there.....";
+    }
+    public static void BoomArmorEvent(ServerPlayerEntity player) {
+        String message = new Armor().execute(player);
+
+        MinecraftServer server = player.getServer();
+        if (server != null) {
+            server.getPlayerManager().broadcast(Text.literal("§6[Chaos] §e" + message), false);
+        }
+
+        player.sendMessage(Text.literal("§d" + message), true);
     }
 }
