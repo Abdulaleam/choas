@@ -9,6 +9,7 @@ import net.minecraft.util.Identifier;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import rainy.choas.item.RainyItemGroup;
 import rainy.choas.item.RainyItems;
 
 public class Choas implements ModInitializer {
@@ -17,6 +18,7 @@ public class Choas implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		RainyItems.registerRainyItems();
+		RainyItemGroup.RegisterRainyItemGroups();
 		CommandRegistrationCallback.EVENT.register(((dispatcher, registryAccess, environment) ->
 				dispatcher.register(CommandManager.literal("choas")
 						.then(CommandManager.literal("start").executes(ChoasCommand::start))
