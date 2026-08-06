@@ -28,6 +28,7 @@ public class RainyItemGroup {
                         entries.add(RainyItems.SHUFFLE);
                         entries.add(RainyItems.TELEPORT);
                         entries.add(RainyItems.TOGTHER);
+                        entries.add(RainyItems.MONSTER);
 
 
 
