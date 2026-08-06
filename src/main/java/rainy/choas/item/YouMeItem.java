@@ -14,7 +14,7 @@ public class YouMeItem extends Item {
     }
     @Override
     public TypedActionResult<net.minecraft.item.ItemStack> use(World world, PlayerEntity player, Hand hand) {
-        if (world.isClient && player instanceof ServerPlayerEntity serverPlayer) {
+        if (!world.isClient && player instanceof ServerPlayerEntity serverPlayer) {
             String message = new Iam_You_You_are_Me().execute(serverPlayer);
             Iam_You_You_are_Me.BoomYouMe(serverPlayer);
         }

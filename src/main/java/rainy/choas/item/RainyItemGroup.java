@@ -26,6 +26,8 @@ public class RainyItemGroup {
                         entries.add(RainyItems.SWAP);
                         entries.add(RainyItems.YOUME);
                         entries.add(RainyItems.SHUFFLE);
+                        entries.add(RainyItems.TELEPORT);
+
 
 
 

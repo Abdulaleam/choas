@@ -43,7 +43,6 @@ public class Swap implements ChoasEventRegistry.ChoasEvent {
     public static void BoomSwapEvent(ServerPlayerEntity player) {
         String message = new Swap().execute(player);
 
-
          MinecraftServer server = player.getServer();
 
          if (server != null) {

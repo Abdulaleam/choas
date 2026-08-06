@@ -15,7 +15,7 @@ public class MyHorseItem extends Item{
     }
     @Override
     public TypedActionResult<net.minecraft.item.ItemStack> use(World world, PlayerEntity player, Hand hand) {
-        if (world.isClient && player instanceof ServerPlayerEntity serverPlayer){
+        if (!world.isClient && player instanceof ServerPlayerEntity serverPlayer){
             String message = new MyHorse().execute(serverPlayer);
             MyHorse.BoomMyHorse(serverPlayer);
         }

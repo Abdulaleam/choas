@@ -18,6 +18,7 @@ public class RainyItems {
     public static final Item YOUME = registerItem("youme", new YouMeItem(new Item.Settings().maxCount(1)));
     public static final Item SHUFFLE = registerItem("shuffle", new InvShuffleItem(new Item.Settings().maxCount(1)));
     public static final Item HORSE =  registerItem("horse", new MyHorseItem(new Item.Settings().maxCount(1)));
+    public static final Item TELEPORT = registerItem("teleport", new TeleportItem(new Item.Settings().maxCount(1)));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(Choas.MOD_ID, name), item);

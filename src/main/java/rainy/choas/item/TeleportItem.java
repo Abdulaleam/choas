@@ -2,21 +2,23 @@ package rainy.choas.item;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
-import rainy.choas.events.GibMeYourInV;
+import rainy.choas.events.RandomTeleport;
 
-public class GibInvItem extends Item {
-    public GibInvItem(Settings settings) {
+public class TeleportItem extends Item {
+
+    public TeleportItem(Settings settings) {
         super(settings);
     }
     @Override
-    public TypedActionResult<net.minecraft.item.ItemStack> use(World world, PlayerEntity player, Hand hand){
+    public TypedActionResult<net.minecraft.item.ItemStack> use(World world, PlayerEntity player, Hand hand) {
         if (!world.isClient && player instanceof ServerPlayerEntity serverPlayer) {
-            String message = new GibMeYourInV().execute(serverPlayer);
-            GibMeYourInV.BoomGibme(serverPlayer);
+            String message = new RandomTeleport().execute(serverPlayer);
+            RandomTeleport.BoomTeleportEvent(serverPlayer);
         }
         return TypedActionResult.success(player.getStackInHand(hand), world.isClient());
     }

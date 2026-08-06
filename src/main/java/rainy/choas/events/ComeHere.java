@@ -36,7 +36,7 @@ public class ComeHere implements ChoasEventRegistry.ChoasEvent {
 
     }
     public static void BoomComeHere(ServerPlayerEntity player) {
-        String message = new DropAll().execute(player);
+        String message = new ComeHere().execute(player);
         MinecraftServer server = player.getServer();
         if (server != null) {
             server.getPlayerManager().broadcast(Text.literal("§6[Chaos] §e" + message), false);
